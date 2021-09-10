@@ -27,7 +27,7 @@ class MovieCell: UITableViewCell {
     var movieBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 20
         return view
@@ -49,6 +49,22 @@ class MovieCell: UITableViewCell {
         self.posterImageHeightConstraint?.isActive = true
         
         return imageView
+    }()
+    
+    var dateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    var popularityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.numberOfLines = 1
+        return label
     }()
     
     private var posterImageHeightConstraint: NSLayoutConstraint?
@@ -81,10 +97,13 @@ class MovieCell: UITableViewCell {
             self.posterImageHeightConstraint = self.posterImageView.heightAnchor.constraint(equalTo: self.posterImageView.widthAnchor, multiplier: aspectRatio)
             self.posterImageHeightConstraint?.isActive = true
         }
+        dateLabel.text = movieModel.releaseDate
+        
+        popularityLabel.text = "\(Int(movieModel.voteAverage * 10)) %"
     }
     
     private func setupViews() {
-        backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0, green: 0.3285208941, blue: 0.5748849511, alpha: 1)
         contentView.addSubview(movieBackgroundView)
         movieBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.padding).isActive = true
         movieBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.padding).isActive = true
@@ -100,6 +119,17 @@ class MovieCell: UITableViewCell {
         titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: Constants.padding).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: movieBackgroundView.trailingAnchor, constant: -Constants.padding).isActive = true
+        
+        movieBackgroundView.addSubview(dateLabel)
+        dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        dateLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: Constants.padding).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: movieBackgroundView.trailingAnchor, constant: -Constants.padding).isActive = true
+        
+        movieBackgroundView.addSubview(popularityLabel)
+        popularityLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor).isActive = true
+        popularityLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: Constants.padding).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: movieBackgroundView.trailingAnchor).isActive = true
+        popularityLabel.textColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
         
     }
 }

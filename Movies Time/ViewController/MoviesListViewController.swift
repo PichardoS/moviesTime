@@ -44,6 +44,7 @@ class MoviesListViewController: UITableViewController {
                     self?.moviesList = moviesList
                     self?.tableView.reloadData()
                 case .failure(let error):
+                    print(error.localizedDescription)
                     break
                 }
             }
@@ -86,6 +87,7 @@ extension MoviesListViewController {
         }
         
         movieCell.movieModel = moviesList?.movies[indexPath.row]
+        movieCell.accessoryType = .disclosureIndicator
         
         return movieCell
     }
@@ -95,5 +97,9 @@ extension MoviesListViewController {
 
 extension MoviesListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = MoviesDetailsViewController()
+        vc.movie = moviesList?.movies[indexPath.row]
+        self.present(vc, animated: true, completion: nil)
+
     }
 }

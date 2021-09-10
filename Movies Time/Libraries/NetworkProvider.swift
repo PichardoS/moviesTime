@@ -72,6 +72,27 @@ final class NetworkProvider {
         }.resume()
     }
     
+    func fetchMoviesDetails(id: Int, completion: @escaping (Result<MovieDetails, NetworkError>)-> Void) {
+        guard let url = urlFor(requestType: .movieDetails, id) else {
+            completion(.failure(.missingSettings))
+            return
+        }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                completion(.failure(.responseError))
+                return
+            }
+            
+            do {
+                let movieDetail = try JSONDecoder().decode(MovieDetails.self, from: data)
+                completion(.success(movieDetail))
+            } catch let error {
+                print(error)
+                completion(.failure(.jsonParsing))
+            }
+        }.resume()
+    }
+    
     func retrieveImageFor(imagePath: String, completion: @escaping (UIImage?) -> Void) {
         guard let baseImageURL = baseImageURL,
               let imageURL = URL(string: "\(baseImageURL)\(imagePath)") else {
@@ -88,7 +109,7 @@ final class NetworkProvider {
         }.resume()
     }
     
-    private func urlFor(requestType: RequestType) -> URL? {
+    private func urlFor(requestType: RequestType, _ id: Int=0) -> URL? {
         let queryParams = queryParamsFor(requestType: requestType)
         
         guard var urlString = baseURL,
@@ -100,7 +121,7 @@ final class NetworkProvider {
         case .moviesList:
             urlString.append(moviesPath)
         case .movieDetails:
-            break
+            urlString.append("movie/\(id)")
         }
         var query = "?"
         for (key, value) in queryParams {
@@ -117,7 +138,8 @@ final class NetworkProvider {
         
         switch requestType {
         case .movieDetails:
-            break
+            queryParams["api_key"] = token
+            queryParams["language"] = "es-MX"
         case .moviesList:
             queryParams["api_key"] = token
             queryParams["language"] = "es-MX"
