@@ -11,36 +11,11 @@ class MoviesDetailsViewController: UIViewController {
     
     enum Constants {
         static let padding: CGFloat = 10
+        static let color: UIColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     }
     
     var movie: Movie?
     var id: Int?
-    
-    var movieBackgroundView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        return view
-    }()
-    
-    var separationView1: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        return view
-    }()
-    var separationView2: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        return view
-    }()
-    var separationView3: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        return view
-    }()
     
     var stackViewPrincipal: UIStackView = {
         let stack = UIStackView()
@@ -79,52 +54,15 @@ class MoviesDetailsViewController: UIViewController {
         return imageView
     }()
     
-    var dateLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.numberOfLines = 1
-        return label
-    }()
+    var dateLabel, popularityLabel, budgetLabel, revenueLabel, genresLabel: UILabel!
     
-    var popularityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.numberOfLines = 1
-        return label
-    }()
-    
-    var budgetLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.numberOfLines = 1
-        return label
-    }()
-    
-    var revenueLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.numberOfLines = 1
-        return label
-    }()
-    
-    var genresLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.numberOfLines = 1
-        return label
-    }()
-    
-    var overviewLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.numberOfLines = 0
-        return label
+    var overviewText: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.font = UIFont.systemFont(ofSize: 15)
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        return textView
     }()
     
     private var posterImageHeightConstraint: NSLayoutConstraint?
@@ -170,6 +108,16 @@ class MoviesDetailsViewController: UIViewController {
     }
     
     private func setUp(){
+        let movieBackgroundView = viewsFor()
+        let separationView1 = viewsFor()
+        let separationView2 = viewsFor()
+        let separationView3 = viewsFor()
+        dateLabel = labelFor()
+        popularityLabel = labelFor()
+        budgetLabel = labelFor()
+        revenueLabel = labelFor()
+        genresLabel = labelFor()
+        
         view.addSubview(movieBackgroundView)
         movieBackgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         movieBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -210,7 +158,8 @@ class MoviesDetailsViewController: UIViewController {
         stackViewPrincipal.addArrangedSubview(separationView3)
         separationView3.heightAnchor.constraint(equalTo: titleLabel.heightAnchor, multiplier: 0.2).isActive = true
         
-        stackViewPrincipal.addArrangedSubview(overviewLabel)
+        stackViewPrincipal.addArrangedSubview(overviewText)
+        overviewText.backgroundColor = Constants.color
         
     }
     
@@ -245,6 +194,21 @@ class MoviesDetailsViewController: UIViewController {
             genres = movie.genres[0].name
         }
         genresLabel.text = genres
-        overviewLabel.text = movie.overview
+        overviewText.text = movie.overview
+    }
+    
+    private func viewsFor() -> UIView{
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Constants.color
+        return view
+    }
+    
+    private func labelFor() -> UILabel{
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.numberOfLines = 1
+        return label
     }
 }

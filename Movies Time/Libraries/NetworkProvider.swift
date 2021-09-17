@@ -51,7 +51,7 @@ final class NetworkProvider {
     
     func fetchMovies(completion: @escaping (Result<MoviesList, NetworkError>)-> Void) {
         
-        guard let url = urlFor(requestType: .moviesList) else {
+        guard let url = urlFor(requestType: .moviesList, nil) else {
             completion(.failure(.missingSettings))
             return
         }
@@ -109,7 +109,7 @@ final class NetworkProvider {
         }.resume()
     }
     
-    private func urlFor(requestType: RequestType, _ id: Int=0) -> URL? {
+    private func urlFor(requestType: RequestType, _ id: Int?) -> URL? {
         let queryParams = queryParamsFor(requestType: requestType)
         
         guard var urlString = baseURL,
@@ -121,7 +121,7 @@ final class NetworkProvider {
         case .moviesList:
             urlString.append(moviesPath)
         case .movieDetails:
-            urlString.append("movie/\(id)")
+            urlString.append("movie/\(id ?? 0)")
         }
         var query = "?"
         for (key, value) in queryParams {
