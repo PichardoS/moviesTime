@@ -108,15 +108,15 @@ class MoviesDetailsViewController: UIViewController {
     }
     
     private func setUp(){
-        let movieBackgroundView = viewsFor()
-        let separationView1 = viewsFor()
-        let separationView2 = viewsFor()
-        let separationView3 = viewsFor()
-        dateLabel = labelFor()
-        popularityLabel = labelFor()
-        budgetLabel = labelFor()
-        revenueLabel = labelFor()
-        genresLabel = labelFor()
+        let movieBackgroundView = viewsProperties()
+        let separationView1 = viewsProperties()
+        let separationView2 = viewsProperties()
+        let separationView3 = viewsProperties()
+        dateLabel = labelProperties()
+        popularityLabel = labelProperties()
+        budgetLabel = labelProperties()
+        revenueLabel = labelProperties()
+        genresLabel = labelProperties()
         
         view.addSubview(movieBackgroundView)
         movieBackgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -197,14 +197,14 @@ class MoviesDetailsViewController: UIViewController {
         overviewText.text = movie.overview
     }
     
-    private func viewsFor() -> UIView{
+    private func viewsProperties() -> UIView{
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Constants.color
         return view
     }
     
-    private func labelFor() -> UILabel{
+    private func labelProperties() -> UILabel{
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20)

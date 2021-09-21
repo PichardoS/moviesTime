@@ -97,9 +97,9 @@ extension MoviesListViewController {
 
 extension MoviesListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nextView = MoviesDetailsViewController()
-        nextView.movie = moviesList?.movies[indexPath.row]
-        self.present(nextView, animated: true, completion: nil)
+        let movieDetailsView = MoviesDetailsViewController()
+        movieDetailsView.movie = moviesList?.movies[indexPath.row]
+        self.present(movieDetailsView, animated: true, completion: nil)
 
     }
 }
