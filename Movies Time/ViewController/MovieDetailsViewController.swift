@@ -108,15 +108,15 @@ class MoviesDetailsViewController: UIViewController {
     }
     
     private func setUp(){
-        let movieBackgroundView = viewsProperties()
-        let separationView1 = viewsProperties()
-        let separationView2 = viewsProperties()
-        let separationView3 = viewsProperties()
-        dateLabel = labelProperties()
-        popularityLabel = labelProperties()
-        budgetLabel = labelProperties()
-        revenueLabel = labelProperties()
-        genresLabel = labelProperties()
+        let movieBackgroundView = genericViewsGenerator()
+        let separationView1 = genericViewsGenerator()
+        let separationView2 = genericViewsGenerator()
+        let separationView3 = genericViewsGenerator()
+        dateLabel = genericLabelsGenerator()
+        popularityLabel = genericLabelsGenerator()
+        budgetLabel = genericLabelsGenerator()
+        revenueLabel = genericLabelsGenerator()
+        genresLabel = genericLabelsGenerator()
         
         view.addSubview(movieBackgroundView)
         movieBackgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -163,7 +163,7 @@ class MoviesDetailsViewController: UIViewController {
         
     }
     
-    private func setUp(_ movie: MovieDetails){
+    private func setUp(_ movie: MovieDetails) {
         
         var genres = " "
         titleLabel.text = movie.title
@@ -197,14 +197,14 @@ class MoviesDetailsViewController: UIViewController {
         overviewText.text = movie.overview
     }
     
-    private func viewsProperties() -> UIView{
+    private func genericViewsGenerator() -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Constants.color
         return view
     }
     
-    private func labelProperties() -> UILabel{
+    private func genericLabelsGenerator() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20)
