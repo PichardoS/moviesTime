@@ -18,6 +18,8 @@
 		5D13A6A226E53A9B0073612D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13A6A126E53A9B0073612D /* Movie.swift */; };
 		5D13A6A426E5440F0073612D /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13A6A326E5440F0073612D /* MovieCell.swift */; };
 		5D13A6A626E556C30073612D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13A6A526E556C30073612D /* Extensions.swift */; };
+		8835E46726E8315F0070123F /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8835E46626E8315F0070123F /* MovieDetailsViewController.swift */; };
+		8835E46926E865EA0070123F /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8835E46826E865EA0070123F /* MovieDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		5D13A6A126E53A9B0073612D /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		5D13A6A326E5440F0073612D /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		5D13A6A526E556C30073612D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8835E46626E8315F0070123F /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		8835E46826E865EA0070123F /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 			children = (
 				5D13A69F26E529C50073612D /* MoviesList.swift */,
 				5D13A6A126E53A9B0073612D /* Movie.swift */,
+				8835E46826E865EA0070123F /* MovieDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 			children = (
 				5D13A68726E5238C0073612D /* MoviesListViewController.swift */,
 				5D13A6A326E5440F0073612D /* MovieCell.swift */,
+				8835E46626E8315F0070123F /* MovieDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -186,6 +192,8 @@
 			files = (
 				5D13A6A426E5440F0073612D /* MovieCell.swift in Sources */,
 				5D13A68826E5238C0073612D /* MoviesListViewController.swift in Sources */,
+				8835E46726E8315F0070123F /* MovieDetailsViewController.swift in Sources */,
+				8835E46926E865EA0070123F /* MovieDetails.swift in Sources */,
 				5D13A69B26E524E30073612D /* NetworkProvider.swift in Sources */,
 				5D13A6A626E556C30073612D /* Extensions.swift in Sources */,
 				5D13A6A226E53A9B0073612D /* Movie.swift in Sources */,

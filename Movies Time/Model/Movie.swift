@@ -10,9 +10,10 @@ import Foundation
 struct Movie: Decodable {
     
     private enum CodingKeys: String, CodingKey {
-        case id, title, overview, popularity
+        case id, title, overview
         case releaseDate = "release_date"
         case posterImageString = "poster_path"
+        case voteAverage = "vote_average"
         
     }
     
@@ -21,5 +22,5 @@ struct Movie: Decodable {
     let overview: String
     let posterImageString: String
     let releaseDate: String
-    let popularity: Float
+    let voteAverage: Float
 }
